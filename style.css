@@ -1,0 +1,975 @@
+/* ==========================================================================
+   D.A.R.W.I.N. Web Shell - Sistema de Regulacion Sensorial
+   Estilos CSS Modular y Adaptativo (Responsive Design System)
+   ========================================================================== */
+
+/* Variables globales de diseno */
+:root {
+    /* Paleta Modo Sobrecarga (Caos) */
+    --chaos-bg: #ff0055;
+    --chaos-card1: #ffff00;
+    --chaos-card2: #00e5ff;
+    --chaos-card3: #ff3300;
+    --chaos-card4: #39ff14;
+    --chaos-text: #ffffff;
+
+    /* Paleta Modo D.A.R.W.I.N. (Refugio Brutalista) */
+    --darwin-bg: #e8e7e1;
+    --darwin-surface: #ffffff;
+    --darwin-surface-alt: #f3f2eb;
+    --darwin-border: #000000;
+    --darwin-text: #000000;
+    --darwin-text-muted: #555555;
+    --darwin-accent: #111111;
+
+    /* Tipografia y tamanos */
+    --font-mono: 'Courier New', Courier, monospace;
+    --base-font-size: 15px;
+}
+
+/* Reset y estilos de base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-mono);
+    font-size: var(--base-font-size);
+    background-color: var(--chaos-bg);
+    color: #000000;
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: background-color 0.1s ease;
+}
+
+/* ==========================================================================
+   BARRA DE CONTROL GLOBAL (BOTON PANICO / SWITCH RESPONSIVE)
+   ========================================================================== */
+.global-control-bar {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 10000;
+}
+
+.panic-btn {
+    display: inline-block;
+    padding: 14px 22px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #000000;
+    background-color: #ffffff;
+    border: 3px solid #000000;
+    box-shadow: 5px 5px 0px #000000;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: none;
+    min-height: 44px;
+    text-align: center;
+}
+
+.panic-btn:hover {
+    background-color: #f0f0f0;
+    transform: translate(-1px, -1px);
+    box-shadow: 6px 6px 0px #000000;
+}
+
+.panic-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0px #000000;
+}
+
+/* Estilo del boton cuando D.A.R.W.I.N. esta activo */
+body.darwin-active .panic-btn {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
+    box-shadow: 5px 5px 0px #777777;
+}
+
+body.darwin-active .panic-btn:hover {
+    background-color: #222222;
+}
+
+/* ==========================================================================
+   ESTADO 1: MODO SOBRECARGA (ENTORNO HOSTIL Y SATURADO)
+   ========================================================================== */
+#overloadMode {
+    display: block;
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: repeating-linear-gradient(
+        45deg,
+        #ff0055,
+        #ff0055 20px,
+        #ff2a75 20px,
+        #ff2a75 40px
+    );
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+/* Animacion de parpadeo de fondo */
+.chaos-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(255,255,0,0.15) 0%, rgba(255,0,85,0.3) 100%);
+    animation: pulseChaos 1.5s infinite alternate;
+}
+
+@keyframes pulseChaos {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+}
+
+/* Ticker marquesina caotica */
+.ticker-wrap {
+    width: 100%;
+    background-color: var(--chaos-card1);
+    color: #000000;
+    font-weight: bold;
+    padding: 10px 0;
+    border-top: 4px solid #000000;
+    border-bottom: 4px solid #000000;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    margin-bottom: 20px;
+}
+
+.ticker-move {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ticker 12s linear infinite;
+    font-size: 1.05rem;
+}
+
+@keyframes ticker {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+}
+
+/* Popups caoticos superpuestos */
+.popup {
+    position: absolute;
+    width: 320px;
+    max-width: 90vw;
+    border-radius: 8px;
+    border: 4px solid #000000;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 0, 85, 0.4);
+    animation: shake 0.4s infinite;
+    z-index: 100;
+}
+
+.popup-header {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.popup-body {
+    padding: 15px;
+    background-color: #ffffff;
+    font-family: sans-serif;
+}
+
+.popup.urgent-popup {
+    background-color: var(--chaos-card1);
+    border-color: #ff0000;
+    animation-duration: 0.3s;
+}
+
+.popup.social-popup {
+    background-color: var(--chaos-card2);
+    animation-duration: 0.5s;
+}
+
+.popup.ad-popup {
+    background-color: var(--chaos-card4);
+    width: 360px;
+    max-width: 90vw;
+    animation-duration: 0.25s;
+}
+
+.popup.warning-popup {
+    background-color: var(--chaos-card3);
+    color: #ffffff;
+    animation-duration: 0.6s;
+}
+
+.popup.warning-popup .popup-body {
+    background-color: #111111;
+    color: #ffffff;
+}
+
+.big-ad-text {
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: #ff0055;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.chaos-ad-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border: 2px solid #000000;
+    margin-bottom: 10px;
+    filter: saturate(2) contrast(1.2);
+}
+
+.chaos-btn, .chaos-btn-blue, .chaos-btn-yellow {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    min-height: 44px;
+}
+
+.chaos-btn { background: #ff0055; color: #fff; box-shadow: 0 4px 10px rgba(255,0,85,0.5); }
+.chaos-btn-blue { background: #0055ff; color: #fff; box-shadow: 0 4px 10px rgba(0,85,255,0.5); }
+.chaos-btn-yellow { background: #ffcc00; color: #000; box-shadow: 0 4px 10px rgba(255,204,0,0.5); font-size: 1.05rem; }
+
+.chaos-meter {
+    width: 100%;
+    height: 15px;
+    background: #333;
+    border: 1px solid #fff;
+    margin: 8px 0;
+}
+
+.chaos-meter-bar {
+    width: 98%;
+    height: 100%;
+    background: linear-gradient(90deg, #ffcc00, #ff0000);
+}
+
+.small-text {
+    font-size: 0.75rem;
+    color: #666666;
+    margin-top: 4px;
+}
+
+/* Keyframes de vibracion/sacudida */
+@keyframes shake {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    20% { transform: translate(-2px, 2px) rotate(-1deg); }
+    40% { transform: translate(2px, -1px) rotate(1deg); }
+    60% { transform: translate(-1px, -2px) rotate(0deg); }
+    80% { transform: translate(2px, 1px) rotate(1deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* ==========================================================================
+   ESTADO 2: MODO D.A.R.W.I.N. (REFUGIO BRUTALISTA RESPONSIVE)
+   ========================================================================== */
+body.darwin-active {
+    background-color: var(--darwin-bg);
+    color: var(--darwin-text);
+}
+
+/* Ocultar sobrecarga y mostrar D.A.R.W.I.N. */
+body.darwin-active #overloadMode {
+    display: none;
+}
+
+#darwinMode {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+}
+
+body.darwin-active #darwinMode {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+}
+
+/* Panel Lateral Fijo (Sidebar 260px) */
+.darwin-sidebar {
+    background-color: var(--darwin-surface);
+    border-right: 3px solid var(--darwin-border);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.brand-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    border-bottom: 3px solid var(--darwin-border);
+    padding-bottom: 5px;
+    margin-bottom: 4px;
+}
+
+.brand-subtitle {
+    font-size: 0.75rem;
+    color: var(--darwin-text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+.nav-section-title {
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: var(--darwin-text-muted);
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 30px;
+}
+
+.nav-item {
+    display: block;
+    padding: 10px 12px;
+    color: var(--darwin-text);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border: 2px solid transparent;
+    transition: none;
+    min-height: 40px;
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: var(--darwin-border);
+    color: #ffffff;
+    border-color: var(--darwin-border);
+}
+
+.sidebar-status {
+    background-color: var(--darwin-surface-alt);
+    border: 2px solid var(--darwin-border);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.status-box {
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+}
+
+.status-box:last-child {
+    margin-bottom: 0;
+}
+
+.status-label {
+    display: block;
+    color: var(--darwin-text-muted);
+    font-size: 0.7rem;
+}
+
+.status-value {
+    font-weight: bold;
+}
+
+.status-value.highlight {
+    background-color: var(--darwin-border);
+    color: #ffffff;
+    padding: 2px 6px;
+    display: inline-block;
+    margin-top: 2px;
+}
+
+.sidebar-footer {
+    font-size: 0.7rem;
+    color: var(--darwin-text-muted);
+    border-top: 1px dashed var(--darwin-border);
+    padding-top: 15px;
+    line-height: 1.4;
+}
+
+/* Area Principal Fluida */
+.darwin-main {
+    padding: 40px 30px 60px 30px;
+    overflow-y: auto;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid var(--darwin-border);
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.main-header h2 {
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.main-header .subtitle {
+    font-size: 0.85rem;
+    color: var(--darwin-text-muted);
+    margin-top: 4px;
+}
+
+.header-metrics {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.metric-badge {
+    background-color: var(--darwin-surface);
+    border: 2px solid var(--darwin-border);
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 3px 3px 0px var(--darwin-border);
+}
+
+/* Content Grid para Tarjetas */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+/* Tarjetas Estilo Neo-Brutalista */
+.brutalist-card {
+    background-color: var(--darwin-surface);
+    border: 3px solid var(--darwin-border);
+    box-shadow: 5px 5px 0px var(--darwin-border);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.brutalist-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.card-header {
+    border-bottom: 2px solid var(--darwin-border);
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+}
+
+.card-tag {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--darwin-text-muted);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.card-title {
+    font-size: 1.05rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Componentes del Reproductor de Audio */
+.track-display {
+    background-color: var(--darwin-surface-alt);
+    border: 2px solid var(--darwin-border);
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.track-label {
+    font-size: 0.7rem;
+    color: var(--darwin-text-muted);
+    display: block;
+}
+
+.track-title {
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin: 4px 0;
+
+}
+
+.track-status {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--darwin-text-muted);
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 14px;
+    background-color: #ffffff;
+    border: 2px solid var(--darwin-border);
+    margin-bottom: 6px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--darwin-border);
+    transition: width 0.3s linear;
+}
+
+.time-readout {
+    font-size: 0.75rem;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.audio-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.audio-controls .brutalist-btn {
+    flex: 1;
+    min-width: 90px;
+    text-align: center;
+}
+
+/* Botones Brutalistas Genericos */
+.brutalist-btn {
+    background-color: var(--darwin-surface);
+    color: var(--darwin-text);
+    border: 2px solid var(--darwin-border);
+    box-shadow: 3px 3px 0px var(--darwin-border);
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: none;
+    min-height: 42px;
+}
+
+.brutalist-btn:hover {
+    background-color: #f0f0f0;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px var(--darwin-border);
+}
+
+.brutalist-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px var(--darwin-border);
+}
+
+.brutalist-btn.primary {
+    background-color: var(--darwin-border);
+    color: #ffffff;
+}
+
+.brutalist-btn.primary:hover {
+    background-color: #222222;
+}
+
+/* Lista de Tareas en Texto Plano */
+.task-input-group {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.brutalist-input {
+    flex: 1;
+    min-width: 180px;
+    background-color: var(--darwin-surface);
+    border: 2px solid var(--darwin-border);
+    padding: 10px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    outline: none;
+    min-height: 42px;
+}
+
+.brutalist-input:focus {
+    box-shadow: 3px 3px 0px var(--darwin-border);
+}
+
+.plain-task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+    background-color: var(--darwin-surface-alt);
+    border: 2px solid var(--darwin-border);
+    font-size: 0.82rem;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.task-item.muted {
+    opacity: 0.7;
+    background-color: #e2e2dc;
+}
+
+.task-time {
+    font-weight: bold;
+    color: var(--darwin-text-muted);
+    white-space: nowrap;
+}
+
+.task-text {
+    flex: 1;
+}
+
+.task-del-btn {
+    background: none;
+    border: 1px solid var(--darwin-border);
+    font-family: var(--font-mono);
+    font-weight: bold;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    cursor: pointer;
+    min-height: 32px;
+}
+
+.task-del-btn:hover {
+    background-color: var(--darwin-border);
+    color: #ffffff;
+}
+
+/* Galeria de Imagenes Brutalista */
+.section-desc {
+    font-size: 0.85rem;
+    color: var(--darwin-text-muted);
+    margin-bottom: 18px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    background-color: var(--darwin-surface-alt);
+    border: 2px solid var(--darwin-border);
+    padding: 14px;
+}
+
+.image-frame {
+    border: 2px solid var(--darwin-border);
+    background-color: #ffffff;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.brutalist-img {
+    width: 100%;
+    height: 240px;
+    max-height: 50vh;
+    object-fit: cover;
+    display: block;
+    border: 1px solid var(--darwin-border);
+    filter: grayscale(10%) contrast(1.05);
+}
+
+.image-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.img-title {
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.img-info {
+    font-size: 0.75rem;
+    color: var(--darwin-text-muted);
+}
+
+/* Regulador de Parametros (Sliders) */
+.control-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 0.82rem;
+    font-weight: bold;
+    flex-wrap: wrap;
+}
+
+.brutalist-slider {
+    flex: 1;
+    min-width: 140px;
+    accent-color: var(--darwin-border);
+    cursor: pointer;
+    height: 20px;
+}
+
+.action-row {
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   ADAPTACION RESPONSIVE COMPLETA (MEDIA QUERIES)
+   ========================================================================== */
+
+/* 1. Laptop & Tablet Landscape (992px - 1199px) */
+@media (max-width: 1199px) {
+    body.darwin-active #darwinMode {
+        grid-template-columns: 230px 1fr;
+    }
+
+    .darwin-sidebar {
+        padding: 25px 15px;
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* 2. Tablet Portrait (768px - 991px) */
+@media (max-width: 991px) {
+    body.darwin-active #darwinMode {
+        grid-template-columns: 1fr;
+    }
+
+    .darwin-sidebar {
+        min-height: auto;
+        border-right: none;
+        border-bottom: 3px solid var(--darwin-border);
+        padding: 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .sidebar-header {
+        margin-bottom: 0;
+    }
+
+    .brand-title {
+        font-size: 1.5rem;
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+
+    .brand-subtitle {
+        margin-bottom: 0;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 0;
+        gap: 6px;
+    }
+
+    .nav-section-title {
+        display: none;
+    }
+
+    .nav-item {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    .sidebar-status {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 0;
+        padding: 10px 15px;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .sidebar-footer {
+        display: none;
+    }
+
+    .darwin-main {
+        padding: 30px 20px 50px 20px;
+    }
+}
+
+/* 3. Dispositivos Moviles (<= 767px) */
+@media (max-width: 767px) {
+    /* Barra de control flotante fija al centro superior en moviles */
+    .global-control-bar {
+        top: 10px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: 92%;
+        max-width: 420px;
+    }
+
+    .panic-btn {
+        width: 100%;
+        font-size: 0.8rem;
+        padding: 12px 10px;
+        box-shadow: 4px 4px 0px #000000;
+        letter-spacing: 0.5px;
+    }
+
+    /* Adaptacion de Sobrecarga para pantallas pequenas */
+    #overloadMode {
+        padding-top: 75px;
+    }
+
+    .ticker-wrap {
+        margin-top: 5px;
+    }
+
+    /* Transformar popups de posicion absoluta a flujo adaptativo */
+    .popup {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: 92% !important;
+        max-width: 100% !important;
+        margin: 15px auto !important;
+    }
+
+    /* Adaptacion del modo D.A.R.W.I.N. */
+    body.darwin-active #darwinMode {
+        padding-top: 65px;
+    }
+
+    .darwin-sidebar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .sidebar-header {
+        text-align: center;
+    }
+
+    .sidebar-nav {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-item {
+        text-align: center;
+        width: 100%;
+    }
+
+    .sidebar-status {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .darwin-main {
+        padding: 20px 15px 40px 15px;
+    }
+
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .header-metrics {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .metric-badge {
+        flex: 1;
+        text-align: center;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .brutalist-card {
+        padding: 16px;
+    }
+
+    .task-input-group {
+        flex-direction: column;
+    }
+
+    .brutalist-input {
+        width: 100%;
+    }
+
+    .task-item {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .task-del-btn {
+        align-self: flex-end;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .brutalist-img {
+        height: 200px;
+    }
+
+    .control-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .brutalist-slider {
+        width: 100%;
+    }
+}

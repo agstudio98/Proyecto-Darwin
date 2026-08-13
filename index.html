@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D.A.R.W.I.N. Web Shell</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Bar de Control Global con Botón Principal -->
+    <header class="global-control-bar">
+        <button id="toggleBtn" class="panic-btn" type="button">
+            [ INICIAR PROTOCOLO D.A.R.W.I.N. ]
+        </button>
+    </header>
+
+    <!-- MODO 1: Sobrecarga (Entorno Hostil / Ruido Visual Saturado) -->
+    <div id="overloadMode" class="overload-container">
+        <div class="chaos-overlay"></div>
+        
+        <div class="ticker-wrap">
+            <div class="ticker-move">
+                [!] URGENTE: 99+ NOTIFICACIONES SIN LEER -- ALERTA DE OFERTA EXCLUSIVA -- RESPONDE AHORA -- ATENCION REQUERIDA INMEDIATAMENTE -- TENDENCIA VIRAL -- COMPRA YA --
+            </div>
+        </div>
+
+        <div class="popup urgent-popup" style="top: 15%; left: 6%;">
+            <div class="popup-header">[!] ALERTA CRITICA DE SISTEMA</div>
+            <div class="popup-body">
+                <p class="popup-title">ATENCION REQUERIDA</p>
+                <p>Tienes 42 tareas pendientes y 18 correos sin responder.</p>
+                <button class="chaos-btn" type="button">RESOLVER AHORA</button>
+            </div>
+        </div>
+
+        <div class="popup social-popup" style="top: 22%; right: 7%;">
+            <div class="popup-header">[MSG] NOTIFICACION SOCIAL</div>
+            <div class="popup-body">
+                <p><strong>Stuart:</strong> oye responde rapido por favor es urgente!</p>
+                <p class="small-text">Hace 1 segundo - 14 mensajes nuevos</p>
+                <button class="chaos-btn-blue" type="button">RESPONDER</button>
+            </div>
+        </div>
+
+        <div class="popup ad-popup" style="top: 52%; left: 12%;">
+            <div class="popup-header">[AD] OFERTA LIMITADA 90% DESCUENTO</div>
+            <div class="popup-body">
+                <p class="big-ad-text">COMPRA AHORA O PIERDES LA PROMOCION</p>
+                <div class="ad-image-box">
+                    <img src="image/image_1.png" alt="Anuncio publicitario caotico" class="chaos-ad-img">
+                </div>
+                <button class="chaos-btn-yellow" type="button">CLIC AQUI YA</button>
+            </div>
+        </div>
+
+        <div class="popup warning-popup" style="bottom: 12%; right: 10%;">
+            <div class="popup-header">[WARN] SOBRECARGA SENSORIAL</div>
+            <div class="popup-body">
+                <p>Nivel de Ruido Visual: 98.4% (CRITICO)</p>
+                <div class="chaos-meter"><div class="chaos-meter-bar"></div></div>
+                <p class="small-text">Presiona el boton superior para activar refugio.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODO 2: Refugio (Entorno D.A.R.W.I.N. Brutalista) -->
+    <div id="darwinMode" class="darwin-shell">
+        
+        <!-- Panel Lateral Fijo (Sidebar 260px) -->
+        <aside class="darwin-sidebar">
+            <div class="sidebar-header">
+                <h1 class="brand-title">D.A.R.W.I.N.</h1>
+                <p class="brand-subtitle">WEB SHELL v2.4</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">[ NAVEGACION ]</div>
+                <a href="#control" class="nav-item active">[1] PANEL CENTRAL</a>
+                <a href="#audio" class="nav-item">[2] REPRODUCTOR</a>
+                <a href="#tasks" class="nav-item">[3] COLA MENSAJES</a>
+                <a href="#gallery" class="nav-item">[4] ARCHIVO VISUAL</a>
+            </nav>
+
+            <div class="sidebar-status">
+                <div class="status-box">
+                    <span class="status-label">ESTADO:</span>
+                    <span class="status-value highlight">REFUGIO ACTIVO</span>
+                </div>
+                <div class="status-box">
+                    <span class="status-label">FILTRO RUIDO:</span>
+                    <span class="status-value">100% BLOQUEADO</span>
+                </div>
+                <div class="status-box">
+                    <span class="status-label">ESTILO:</span>
+                    <span class="status-value">NEOBRUTALISMO</span>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <p>SISTEMA REGULADOR SENSORIAL</p>
+                <p>TEXTO PLANO - SIN DISTRACTORES</p>
+            </div>
+        </aside>
+
+        <!-- Area Principal Fluida (Grid) -->
+        <main class="darwin-main">
+            
+            <header class="main-header">
+                <div class="header-info">
+                    <h2>PANEL DE CONTROL CENTRAL</h2>
+                    <p class="subtitle">Entorno digital aislado. Regulacion de sobreestimulacion activa.</p>
+                </div>
+                <div class="header-metrics">
+                    <span class="metric-badge">RELOJ: <span id="systemClock">00:00:00</span></span>
+                    <span class="metric-badge">SESION: <span id="sessionTimer">00:00</span></span>
+                </div>
+            </header>
+
+            <div class="content-grid">
+                
+                <!-- Tarjeta 1: Reproductor de Audio Minimalista -->
+                <section id="audio" class="brutalist-card">
+                    <div class="card-header">
+                        <span class="card-tag">[ AUDIO ]</span>
+                        <h3 class="card-title">REPRODUCTOR DE SONIDO RELAJANTE</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="track-display">
+                            <span class="track-label">PISTA ACTUAL:</span>
+                            <div class="track-title" id="currentTrackTitle">Classic Rock Mix - Tio Jim</div>
+                            <div class="track-status" id="trackStatus">ESTADO: PAUSADO</div>
+                        </div>
+
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" id="progressFill" style="width: 35%;"></div>
+                        </div>
+                        <div class="time-readout">
+                            <span id="currentTime">01:45</span> / <span id="totalTime">04:30</span>
+                        </div>
+
+                        <div class="audio-controls">
+                            <button id="btnPrev" class="brutalist-btn" type="button">[ &lt;&lt; ANTERIOR ]</button>
+                            <button id="btnPlay" class="brutalist-btn primary" type="button">[ REPRODUCIR ]</button>
+                            <button id="btnNext" class="brutalist-btn" type="button">[ SIGUIENTE &gt;&gt; ]</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tarjeta 2: Gestor de Tareas / Mensajes en Texto Plano -->
+                <section id="tasks" class="brutalist-card">
+                    <div class="card-header">
+                        <span class="card-tag">[ TEXTO ]</span>
+                        <h3 class="card-title">COLA DE MENSAJES Y TAREAS</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="task-input-group">
+                            <input type="text" id="newTaskInput" class="brutalist-input" placeholder="Escribir nueva nota o tarea..." autocomplete="off">
+                            <button id="addTaskBtn" class="brutalist-btn primary" type="button">[ + AGREGAR ]</button>
+                        </div>
+
+                        <ul id="taskList" class="plain-task-list">
+                            <li class="task-item">
+                                <span class="task-time">[10:05]</span>
+                                <span class="task-text">Profesor: Leer capitulo 4 (Sin urgencia, entregar viernes).</span>
+                                <button class="task-del-btn" type="button">[ X ]</button>
+                            </li>
+                            <li class="task-item">
+                                <span class="task-time">[10:12]</span>
+                                <span class="task-text">Stuart: "Hablamos luego, tomate tu tiempo".</span>
+                                <button class="task-del-btn" type="button">[ X ]</button>
+                            </li>
+                            <li class="task-item muted">
+                                <span class="task-time">[10:30]</span>
+                                <span class="task-text">[Filtro de Ruido]: Mensajes con imagenes bloqueados.</span>
+                                <button class="task-del-btn" type="button">[ X ]</button>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Tarjeta 3: Archivo Visual Brutalista (Galeria de Imagenes) -->
+                <section id="gallery" class="brutalist-card full-width">
+                    <div class="card-header">
+                        <span class="card-tag">[ VISUAL ]</span>
+                        <h3 class="card-title">ARCHIVO DE IMAGENES D.A.R.W.I.N.</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="section-desc">Muestra de ilustraciones procesadas y enmarcadas bajo el estandar neobrutalista (sin animaciones distractivas).</p>
+                        
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <div class="image-frame">
+                                    <img src="image/image_1.png" alt="Ilustracion Skater D.A.R.W.I.N. 1" class="brutalist-img">
+                                </div>
+                                <div class="image-meta">
+                                    <span class="img-title">ILUSTRACION_01.PNG</span>
+                                    <span class="img-info">DESCRIPCION: ARTE SKATE / ROCK Y ENTORNO URBANO</span>
+                                </div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <div class="image-frame">
+                                    <img src="image/image_2.png" alt="Ilustracion Ciudad D.A.R.W.I.N. 2" class="brutalist-img">
+                                </div>
+                                <div class="image-meta">
+                                    <span class="img-title">ILUSTRACION_02.PNG</span>
+                                    <span class="img-info">DESCRIPCION: OBSERVAIS DE LA CIUDAD Y REFLEXION</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tarjeta 4: Controles de Parametros Sensoriales -->
+                <section id="control" class="brutalist-card">
+                    <div class="card-header">
+                        <span class="card-tag">[ CONTROL ]</span>
+                        <h3 class="card-title">REGULADOR DE PARAMETROS</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="control-row">
+                            <label for="contrastSlider">CONTRASTE VISUAL:</label>
+                            <input type="range" id="contrastSlider" min="70" max="130" value="100" class="brutalist-slider">
+                            <span id="contrastVal">100%</span>
+                        </div>
+
+                        <div class="control-row">
+                            <label for="fontSizeSlider">TAMAÑO DE TEXTO:</label>
+                            <input type="range" id="fontSizeSlider" min="12" max="19" value="15" class="brutalist-slider">
+                            <span id="fontVal">15px</span>
+                        </div>
+
+                        <div class="action-row">
+                            <button id="resetParamsBtn" class="brutalist-btn" type="button">[ RESTABLECER VALORES ]</button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
